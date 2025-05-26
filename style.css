@@ -1,0 +1,394 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+section {
+  height: 100vh; /* 화면 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  scroll-snap-align: start; /* 꼭 맞게 정렬 */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    scroll-snap-type: y mandatory; /* 스크롤 */
+    scroll-behavior: smooth; /* menu 찾아가기 */
+    padding-top: 60px;
+  }
+
+
+#home {
+    /* background-color: rgb(192, 235, 235); */
+    background: linear-gradient(to top,#aee1f9,#ffffff);
+    text-align: center;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* 파도 애니메이션 스타일 */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  z-index: 1;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%23FFFFFF" opacity=".25"/></svg>');
+  background-size: 1200px 100%;
+  animation: wave 10s linear infinite;
+}
+
+.wave:nth-child(2) {
+  bottom: 0;
+  animation: wave 7s linear reverse infinite;
+  opacity: 0.5;
+}
+
+.wave:nth-child(3) {
+  bottom: 10px;
+  animation: wave 15s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes wave {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-50%);
+  }
+}
+
+.main {
+    position: fixed;
+    top: 0%;
+    right: 20px;     /* 오른쪽 끝에서 10px 떨어지게 */
+    width: 400px;
+    height: 30px;
+    padding: 10px;
+    display: flex;
+    z-index: 999;
+    /* float: right;  // 제거 */
+    /* margin-top: 20px;  // 제거 */
+  }
+  
+
+.main a {
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container {
+    width: 1300px;
+    height: 1000px;
+    /* padding: 2rem; */
+    /* position: fixed; */
+}
+
+.container p{
+    font-size: 15px;
+    color: #ffffff;
+  }
+
+  .container h1 {
+    font-size: 40px;
+    color: #333;
+    margin-top: 150px;
+  }
+
+
+
+  .profile {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 100px;
+    
+  }
+
+  .profile img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  #profile-info {
+    width: 1300px;
+    height: 800px;
+    margin-top: 100px;
+    /* display: flex; */
+    /* background-color: #333; */
+    position: relative;
+  }
+
+  .profile-name {
+    font-size: 25px;
+    text-align: center;
+    top: 30%;
+    position: absolute;
+    left: 40%;
+    font-style: italic;
+    font-family: "Roboto", "Helvetica", sans-serif;
+    font-weight: 350;
+    border-bottom: 2px solid blue;
+  }
+
+ 
+  #profile {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f4f8;
+    position: relative;
+  }
+  
+  .profile-main {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+  
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    z-index: 2;
+    position: relative;
+    border: 4px solid #3498db;
+    margin-top: 80px;
+
+  }
+  
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* margin-top: 30px; */
+  }
+  
+  /* 원형 궤도 컨테이너 */
+  .orbit-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 350px;
+    transform: translate(-50%, -50%);
+    animation: rotate 20s linear infinite;
+  }
+  
+  /* 각 아이템을 원 궤도 위에 배치 */
+  .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 200px;       /* 크기 키움 */
+    height: 120px;
+    margin: -60px 0 0 -60px; /* 절반 마진 */
+    border-radius: 50%;
+    background: transparent;
+    transform: rotate(calc(90deg * var(--i))) translate(200px) rotate(calc(-90deg * var(--i)));
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .orbit-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  
+  .orbit-item:hover {
+    transform: rotate(calc(90deg * var(--i))) translate(200px) rotate(calc(-90deg * var(--i))) scale(1.2);
+  }
+  
+  
+  /* 회전 애니메이션 */
+  @keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+  .profile-menu {
+    float: right;
+    width: 800px;
+    height: 400px;
+    line-height: 50px;
+    background-color: #92c8ec;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .profile-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+  .profile-menu p {
+    font-size: 20px;
+  }
+
+  .profile-menu span {
+    font-size: 20px;
+  }
+
+  #typing-text {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      /* background: white; */
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 1000;
+  } 
+
+  #portfolio {
+    height: 100vh;
+    background-color: #fff;
+    /* position: absolute; */
+  }
+
+  .portfolio-win {
+    width: 80%;
+    height: 100vh;
+    background-color: #cccccc;
+    border-radius: 20px;
+  }
+
+  .portfolio-main {
+    display: flex;
+    flex-direction: column;     /* 이미지들을 세로로 쌓기 */
+    justify-content: center;    /* 수직 가운데 정렬 */
+    align-items: center;        /* 수평 가운데 정렬 */
+    height: 100%;               /* 부모 영역 채우기 */
+    gap: 80px;
+    position: relative; 
+  }
+
+  .portfolio-main span {
+    position: absolute;
+    font-size: 25px;
+    /* display: none; */
+    color: #fff;
+  }
+
+  .portfolio-main span:nth-child(1) {
+    top: 10%;
+  }
+
+  .portfolio-main span:nth-child(3) {
+    top: 85%;
+  }
+
+  .portfolio-main img {
+    width: 800px;
+  height: 250px;
+  object-fit: cover;
+  /* position: relative; */
+  }
+
+  .portfolio-main img:hover {
+    opacity: 0.2;
+    
+  }
+
+  #footer {
+    height: 20vh;
+    margin-top: 200px;
+  }  
+
+  .footer-main {
+    width: 100%;
+    /* background-color: #dac0c0; */
+    background-color: #333;
+    height: 20vh;
+  }
+
+  .footer-sub {
+    width: 500px;
+    float: left;
+  }
+
+  .footer-sub p {
+    /* text-align: center; */
+    font-size: 18px;
+    color: #fff;
+    text-align: left;
+    line-height: 60px;
+    padding-left: 20px;
+    font-weight: 300;
+  }
+
+  .footer-nav {
+    width: 600px;
+    margin-top: 60px;
+  }
+
+  .footer-nav p {
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .footer-sns {
+    float: right;
+    /* background-color: #3498db; */
+    justify-content: flex-end;
+    gap: 20px;
+    display: flex; 
+  } 
+
+  .footer-sns img {
+    object-fit: contain;
+    width: 50px;
+    height: 50px;
+  } 
+
+  .footer-sns img:hover {
+    opacity: 0.4;
+  }
+
+
+
+  
